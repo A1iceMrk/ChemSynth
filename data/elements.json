@@ -1,0 +1,46 @@
+{
+	"elements": {
+		"H2": {
+			"name": "Водород",
+			"formula": "H₂",
+			"desc": "Самый легкий газ во Вселенной.",
+			"starter": true
+		},
+		"O2": {
+			"name": "Кислород",
+			"formula": "O₂",
+			"desc": "Газ, необходимый для дыхания и горения.",
+			"starter": true
+		},
+		"Heat": {
+			"name": "Нагрев",
+			"formula": "t°",
+			"desc": "Тепловая энергия для запуска реакций.",
+			"starter": true
+		},
+		"H2O": {
+			"name": "Вода",
+			"formula": "H₂O",
+			"desc": "Оксид водорода. Основа жизни на Земле.",
+			"starter": false
+		},
+		"Steam": {
+			"name": "Водяной пар",
+			"formula": "H₂O (газ)",
+			"desc": "Газообразное состояние воды при температуре выше 100°C.",
+			"starter": false
+		}
+	},
+	"recipes": [
+		{
+			"first": "H2",
+			"second": "O2",
+			"result": "H2O"
+		},
+		{
+			"first": "H2O",
+			"second": "Heat",
+			"result": "Steam"
+		}
+	]
+}
