@@ -13,10 +13,6 @@ config_version=5
 config/name="ChemSynth"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
-[autoload]
-
-GameManager="*uid://c1guucn628cye"
-
 [display]
 
 window/stretch/mode="canvas_items"
