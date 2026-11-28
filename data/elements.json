@@ -12,6 +12,24 @@
 			"desc": "Газ, необходимый для дыхания и горения.",
 			"starter": true
 		},
+		"S": {
+			"name": "Сера",
+			"formula": "S",
+			"desc": "Хрупкий желтый неметалл, встречающийся около вулканов.",
+			"starter": true
+		},
+		"Cl2": {
+			"name": "Хлор",
+			"formula": "Cl₂",
+			"desc": "Ядовитый желто-зеленый газ с резким запахом.",
+			"starter": true
+		},
+		"Na": {
+			"name": "Натрий",
+			"formula": "Na",
+			"desc": "Мягкий металл, который можно резать ножом; бурно реагирует с водой.",
+			"starter": true
+		},
 		"Heat": {
 			"name": "Нагрев",
 			"formula": "t°",
@@ -21,13 +39,121 @@
 		"H2O": {
 			"name": "Вода",
 			"formula": "H₂O",
-			"desc": "Оксид водорода. Основа жизни на Земле.",
+			"desc": "Оксид водорода. Универсальный растворитель и основа жизни.",
 			"starter": false
 		},
 		"Steam": {
 			"name": "Водяной пар",
 			"formula": "H₂O (газ)",
 			"desc": "Газообразное состояние воды при температуре выше 100°C.",
+			"starter": false
+		},
+		"H2O2": {
+			"name": "Перекись водорода",
+			"formula": "H₂O₂",
+			"desc": "Бесцветная жидкость, известный антисептик и окислитель.",
+			"starter": false
+		},
+		"SO2": {
+			"name": "Сернистый газ",
+			"formula": "SO₂",
+			"desc": "Газ с резким запахом зажженной спички.",
+			"starter": false
+		},
+		"SO3": {
+			"name": "Серный ангидрид",
+			"formula": "SO₃",
+			"desc": "Оксид серы (VI), летучая жидкость, дымящая на воздухе.",
+			"starter": false
+		},
+		"H2SO3": {
+			"name": "Сернистая кислота",
+			"formula": "H₂SO₃",
+			"desc": "Слабая неустойчивая кислота, образующаяся при растворении сернистого газа.",
+			"starter": false
+		},
+		"H2SO4": {
+			"name": "Серная кислота",
+			"formula": "H₂SO₄",
+			"desc": "Сильная маслянистая кислота, важнейший продукт химпрома.",
+			"starter": false
+		},
+		"H2S": {
+			"name": "Сероводород",
+			"formula": "H₂S",
+			"desc": "Бесцветный ядовитый газ с характерным запахом тухлых яиц.",
+			"starter": false
+		},
+		"HCl": {
+			"name": "Соляная кислота",
+			"formula": "HCl",
+			"desc": "Едкая кислота, содержащаяся в желудочном соке.",
+			"starter": false
+		},
+		"HClO": {
+			"name": "Хлорноватистая кислота",
+			"formula": "HClO",
+			"desc": "Слабая кислота с сильными отбеливающими и дезинфицирующими свойствами.",
+			"starter": false
+		},
+		"Na2O": {
+			"name": "Оксид натрия",
+			"formula": "Na₂O",
+			"desc": "Белое твердое вещество, продукт горения натрия в кислороде.",
+			"starter": false
+		},
+		"Na2O2": {
+			"name": "Пероксид натрия",
+			"formula": "Na₂O₂",
+			"desc": "Желтоватый порошок, используемый для регенерации воздуха на подлодках.",
+			"starter": false
+		},
+		"NaOH": {
+			"name": "Едкий натр",
+			"formula": "NaOH",
+			"desc": "Сильная щелочь (каустическая сода), применяется в производстве мыла.",
+			"starter": false
+		},
+		"NaCl": {
+			"name": "Поваренная соль",
+			"formula": "NaCl",
+			"desc": "Хлорид натрия — главная пищевая приправа.",
+			"starter": false
+		},
+		"NaClO": {
+			"name": "Белизна",
+			"formula": "NaClO",
+			"desc": "Гипохлорит натрия, бытовой отбеливатель и дезинфектор.",
+			"starter": false
+		},
+		"Na2SO4": {
+			"name": "Глауберова соль",
+			"formula": "Na₂SO₄",
+			"desc": "Сульфат натрия, применяется в стекольном производстве и медицине.",
+			"starter": false
+		},
+		"NaHSO4": {
+			"name": "Гидросульфат натрия",
+			"formula": "NaHSO₄",
+			"desc": "Кислая соль серной кислоты, используется для снижения pH в бассейнах.",
+			"starter": false
+		},
+		"Na2SO3": {
+			"name": "Сульфит натрия",
+			"formula": "Na₂SO₃",
+			"desc": "Соль сернистой кислоты, применяется в фотографии и как консервант.",
+			"starter": false
+		},
+		"Na2S": {
+			"name": "Сульфид натрия",
+			"formula": "Na₂S",
+			"desc": "Соль сероводородной кислоты, используется в кожевенном деле.",
+			"starter": false
+		},
+		"SCl2": {
+			"name": "Дихлорид серы",
+			"formula": "SCl₂",
+			"desc": "Темно-красная едкая жидкость, применяемая при вулканизации каучука.",
 			"starter": false
 		}
 	},
@@ -41,6 +167,141 @@
 			"first": "H2O",
 			"second": "Heat",
 			"result": "Steam"
+		},
+		{
+			"first": "H2O",
+			"second": "O2",
+			"result": "H2O2"
+		},
+		{
+			"first": "S",
+			"second": "O2",
+			"result": "SO2"
+		},
+		{
+			"first": "SO2",
+			"second": "O2",
+			"result": "SO3"
+		},
+		{
+			"first": "SO2",
+			"second": "H2O",
+			"result": "H2SO3"
+		},
+		{
+			"first": "SO3",
+			"second": "H2O",
+			"result": "H2SO4"
+		},
+		{
+			"first": "H2SO3",
+			"second": "O2",
+			"result": "H2SO4"
+		},
+		{
+			"first": "S",
+			"second": "H2",
+			"result": "H2S"
+		},
+		{
+			"first": "H2S",
+			"second": "O2",
+			"result": "SO2"
+		},
+		{
+			"first": "H2",
+			"second": "Cl2",
+			"result": "HCl"
+		},
+		{
+			"first": "Cl2",
+			"second": "H2O",
+			"result": "HClO"
+		},
+		{
+			"first": "Na",
+			"second": "O2",
+			"result": "Na2O"
+		},
+		{
+			"first": "Na2O",
+			"second": "O2",
+			"result": "Na2O2"
+		},
+		{
+			"first": "Na",
+			"second": "H2O",
+			"result": "NaOH"
+		},
+		{
+			"first": "Na2O",
+			"second": "H2O",
+			"result": "NaOH"
+		},
+		{
+			"first": "Na2O2",
+			"second": "H2O",
+			"result": "NaOH"
+		},
+		{
+			"first": "Na",
+			"second": "Cl2",
+			"result": "NaCl"
+		},
+		{
+			"first": "NaOH",
+			"second": "HCl",
+			"result": "NaCl"
+		},
+		{
+			"first": "NaOH",
+			"second": "Cl2",
+			"result": "NaClO"
+		},
+		{
+			"first": "NaOH",
+			"second": "HClO",
+			"result": "NaClO"
+		},
+		{
+			"first": "NaOH",
+			"second": "H2SO4",
+			"result": "Na2SO4"
+		},
+		{
+			"first": "NaCl",
+			"second": "H2SO4",
+			"result": "NaHSO4"
+		},
+		{
+			"first": "NaHSO4",
+			"second": "NaOH",
+			"result": "Na2SO4"
+		},
+		{
+			"first": "NaOH",
+			"second": "H2SO3",
+			"result": "Na2SO3"
+		},
+		{
+			"first": "NaOH",
+			"second": "SO2",
+			"result": "Na2SO3"
+		},
+		{
+			"first": "Na",
+			"second": "S",
+			"result": "Na2S"
+		},
+		{
+			"first": "NaOH",
+			"second": "H2S",
+			"result": "Na2S"
+		},
+		{
+			"first": "S",
+			"second": "Cl2",
+			"result": "SCl2"
 		}
 	]
 }
