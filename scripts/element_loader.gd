@@ -1,10 +1,12 @@
 extends Control
 
+#Подгружаем сцены/файлы для дальнейшего использования
 const ELEMENTS_PATH := "res://data/elements.json"
 const ELEMENT_CARD_SCENE := preload("res://scenes/ElementCard.tscn")
 
 @onready var container: Node = $StarterElementsContainer
 
+#Создаем необходимые библиотеки и массивы
 var elements: Dictionary = {}
 var recipes: Array = []
 var selected_ids: Array[String] = []
@@ -51,7 +53,7 @@ func load_elements_data(path: String) -> bool:
 	return true
 #Карты
 func render_starter_elements() -> void:
-	#Смотрим есть ли уже старые кнопки (для появления новых сложных элементов)
+	#Смотрим есть ли уже старые карточки (для появления новых сложных элементов)
 	for child in container.get_children():
 		child.queue_free()
 	cards_by_id.clear()
@@ -77,6 +79,8 @@ func render_starter_elements() -> void:
 			btn.pressed.connect(_on_starter_element_pressed.bind(element_id))
 			container.add_child(btn)
 			'''
+			#Обрисовка карточки
+
 			var card := ELEMENT_CARD_SCENE.instantiate()
 			var el_name: String = str(info.get("name", element_id))
 			var formula: String = str(info.get("formula", ""))
@@ -87,18 +91,21 @@ func render_starter_elements() -> void:
 			card.card_clicked.connect(_on_card_clicked)
 			cards_by_id[element_id] = card
 
+#Обработчик нажатия
 func _on_card_clicked(element_id: String) -> void:
 	if not cards_by_id.has(element_id):
 		return
 	
 	var card = cards_by_id[element_id]
 	
+	#Второй раз нажали на элемент - сняли с него выбор
 	if element_id in selected_ids:
 		selected_ids.erase(element_id)
 		card.is_selected = false
 		print("Снят выбор с элемента: ", element_id)
 		return
-		
+	
+	#Обработка нажатия на один/два элемента и получение результата их синтеза	
 	selected_ids.append(element_id)
 	card.is_selected = true
 	print("Выбран элемент: ", element_id, " | Выбрано сейчас: ", selected_ids)
@@ -111,6 +118,7 @@ func _on_card_clicked(element_id: String) -> void:
 			print("Рецепт не найден для пары: ", selected_ids[0], " + ", selected_ids[1])
 		_clear_selection()
 
+#Нахождение элементов в рецептах
 func find_recipe_result(first_id: String, second_id: String) -> String:
 	for recipe in recipes:
 		if typeof(recipe) != TYPE_DICTIONARY:
@@ -122,7 +130,8 @@ func find_recipe_result(first_id: String, second_id: String) -> String:
 			if (a == first_id and b == second_id) or (a == second_id and b == first_id):
 				return output
 	return ""
-
+	
+#Убираем выделение
 func _clear_selection() -> void:
 	for id in selected_ids:
 		if cards_by_id.has(id):
