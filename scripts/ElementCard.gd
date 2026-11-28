@@ -7,12 +7,6 @@ signal card_clicked(element_id: String)
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var formula_label: Label = $VBoxContainer/FormulaLabel
 
-#Постоянно обновляем карточку
-signal card_clicked(element_id: String)
-
-@onready var title_label: Label = $VBoxContainer/TitleLabel
-@onready var formula_label: Label = $VBoxContainer/FormulaLabel
-
 var element_id: String = ""
 var is_selected: bool = false:
 	set(value):

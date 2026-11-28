@@ -11,6 +11,7 @@ var elements: Dictionary = {}
 var recipes: Array = []
 var selected_ids: Array[String] = []
 var cards_by_id: Dictionary = {}
+var unlocked_ids: Array[String] = []
 
 #Функция запускаемая при старте (функция проверки загрузки БД ниже -> 17)
 func _ready() -> void:
@@ -58,6 +59,7 @@ func render_starter_elements() -> void:
 		child.queue_free()
 	cards_by_id.clear()
 	selected_ids.clear()
+	unlocked_ids.clear()
 	
 	#Перебор элементов
 	for element_id in elements.keys():
@@ -65,20 +67,6 @@ func render_starter_elements() -> void:
 		var is_starter: bool = bool(info.get("starter", false))
 		
 		if is_starter:
-			'''
-			var btn := Button.new()
-			var el_name: String = str(info.get("name", element_id))
-			var formula: String = str(info.get("formula", ""))
-			var desc: String = str(info.get("desc", ""))
-			
-			btn.text = "%s (%s)" % [el_name, formula] if formula != "" else el_name
-			btn.tooltip_text = desc
-			btn.custom_minimum_size = Vector2(220, 44)
-			
-			btn.set_meta("element_id", element_id)
-			btn.pressed.connect(_on_starter_element_pressed.bind(element_id))
-			container.add_child(btn)
-			'''
 			#Обрисовка карточки
 
 			var card := ELEMENT_CARD_SCENE.instantiate()
@@ -114,6 +102,9 @@ func _on_card_clicked(element_id: String) -> void:
 		var result_id := find_recipe_result(selected_ids[0], selected_ids[1])
 		if result_id != "":
 			print("Успешный синтез! ", selected_ids[0], " + ", selected_ids[1], " -> ", result_id)
+			if result_id not in unlocked_ids:
+				unlocked_ids.append(result_id)
+			_add_element_card(result_id)
 		else:
 			print("Рецепт не найден для пары: ", selected_ids[0], " + ", selected_ids[1])
 		_clear_selection()
@@ -130,6 +121,25 @@ func find_recipe_result(first_id: String, second_id: String) -> String:
 			if (a == first_id and b == second_id) or (a == second_id and b == first_id):
 				return output
 	return ""
+	
+#Создание новой карты
+func _add_element_card(element_id: String) -> void:
+	if cards_by_id.has(element_id):
+		return
+	if not elements.has(element_id):
+		push_warning("Элемент не найден в базе: " + element_id)
+		return
+
+	var info: Dictionary = elements[element_id]
+	var card := ELEMENT_CARD_SCENE.instantiate()
+	var el_name: String = str(info.get("name", element_id))
+	var formula: String = str(info.get("formula", ""))
+	var desc: String = str(info.get("desc", ""))
+
+	container.add_child(card)
+	card.setup(element_id, el_name, formula, desc)
+	card.card_clicked.connect(_on_card_clicked)
+	cards_by_id[element_id] = card
 	
 #Убираем выделение
 func _clear_selection() -> void:
