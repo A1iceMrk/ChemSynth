@@ -80,12 +80,12 @@ func render_starter_elements() -> void:
 			container.add_child(btn)
 			'''
 			#Обрисовка карточки
+
 			var card := ELEMENT_CARD_SCENE.instantiate()
 			var el_name: String = str(info.get("name", element_id))
 			var formula: String = str(info.get("formula", ""))
 			var desc: String = str(info.get("desc", ""))
 			
-			#Подгружаем карточку с необходимыми данными
 			container.add_child(card)
 			card.setup(element_id, el_name, formula, desc)
 			card.card_clicked.connect(_on_card_clicked)
@@ -130,7 +130,7 @@ func find_recipe_result(first_id: String, second_id: String) -> String:
 			if (a == first_id and b == second_id) or (a == second_id and b == first_id):
 				return output
 	return ""
-
+	
 #Убираем выделение
 func _clear_selection() -> void:
 	for id in selected_ids:
